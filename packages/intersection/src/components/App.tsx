@@ -1,10 +1,9 @@
 import { Box, Center } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
+import useDisplaySize from "../hooks/useDisplaySize";
 import Row, { directions } from "./Row";
 
 export default function App() {
-  const { height, width } = useViewportSize();
-  const size = Math.min(height, width);
+  const size = useDisplaySize();
 
   return (
     <Center>

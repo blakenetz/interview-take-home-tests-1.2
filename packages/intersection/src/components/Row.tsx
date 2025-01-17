@@ -1,5 +1,5 @@
 import { Center, Flex, MantineStyleProp } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
+import useDisplaySize from "../hooks/useDisplaySize";
 import Light from "./Light";
 
 export const directions = ["north", "south", "east", "west"] as const;
@@ -9,8 +9,7 @@ export interface RowProps {
   direction: Direction;
 }
 
-const cellCount = 7;
-const rowArray = Array.from({ length: cellCount }, (_el, i) => i);
+const rowArray = Array.from({ length: 7 }, (_el, i) => i);
 
 const styles: Record<Direction, MantineStyleProp> = {
   north: { transform: "rotate(180deg)", top: 0, left: 0 },
@@ -20,29 +19,20 @@ const styles: Record<Direction, MantineStyleProp> = {
 };
 
 export default function Row({ direction }: RowProps) {
-  const { height, width } = useViewportSize();
+  const size = useDisplaySize();
 
-  const size = Math.floor(Math.min(height, width) / 11);
   const style = styles[direction];
+  const lightStyle = { transform: `translate(0, -${size}px)` };
 
   return (
     <Flex pos="absolute" w="100%" gap="xs" style={style} justify="center">
       {rowArray.map((cell) => {
         return (
           <Center bg={cell < 3 ? "gray.2" : "gray.5"} h={size} w={size}>
-            {cell === 3 && (
-              <Light
-                state="green"
-                arrow
-                style={{ transform: `translate(0, -${size}px)` }}
-              />
-            )}
-            {cell === 5 && (
-              <Light
-                state="orange"
-                style={{ transform: `translate(0, -${size}px)` }}
-              />
-            )}
+            {/* turn signal */}
+            {cell === 3 && <Light state="green" arrow style={lightStyle} />}
+            {/* main signal */}
+            {cell === 5 && <Light state="orange" style={lightStyle} />}
           </Center>
         );
       })}
