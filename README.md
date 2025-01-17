@@ -1,5 +1,12 @@
 # Code Challenges
 
+Monorepo for Droplet's take-home code assessment. Solutions available at
+
+- [Intersection](./packages/intersection/README.md)
+- [Spell Checker](./packages/spell-check/README.md)
+
+## Prompt
+
 We want to see code you write. Coding live in front of strangers is stressful, and doesn't mimic how you write code at work. Instead, we're sending you a small code challenge. You can pick from [`INTERSECTION.md`](./INTERSECTION.md) or [`SPELL_CHECK.md`](./SPELL_CHECK.md).
 
 Use whatever language and tech stack you're most comfortable with.
@@ -10,7 +17,7 @@ Just like in real life, you can use the internet to help you remember some synta
 
 The goal isn't to finish the assignment. The goal is to see how you approach a problem. Can you decide on and implement an algorithm? What data structures do you use? How do you organize your code? What parts of the problem seem most important to solve first?
 
-## Rubric
+### Rubric
 
 We'll evaluate submissions on the following criteria:
 
@@ -19,7 +26,7 @@ We'll evaluate submissions on the following criteria:
 1. Does it implement the features you decided to tackle?
 1. Is it easy to understand?
 
-## Instructions For Submission
+### Instructions For Submission
 
 Please email [gabby@droplet.io](mailto:gabby@droplet.io) and [jamison@droplet.io](mailto:jamison@droplet.io) a .zip or a link to a source code repository containing your code. Include a `README.md` file with notes on how to run your code, your design thoughts, etc.
 
