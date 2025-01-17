@@ -6,7 +6,9 @@
   "scripts": {
     "start:spell-check": "pnpm run -F spell-check start",
     "start:intersection": "pnpm run -F intersection start",
-    "build": "pnpm run --parallel --if-present build"
+    "build": "pnpm run --parallel --if-present build",
+    "lint": "pnpm run --parallel --if-present lint",
+    "dev": "pnpm run --parallel --if-present dev"
   },
   "devDependencies": {
     "@types/node": "^22.10.7"
