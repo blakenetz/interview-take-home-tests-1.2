@@ -1,4 +1,8 @@
-# Make a Spell Checker!
+#
+
+## Prompt
+
+### Make a Spell Checker!
 
 Write a program that checks spelling. The input to the program is a dictionary file containing a list of valid words and a file containing the text to be checked.
 You can use the `dictionary.txt` file included here as your dictionary.
@@ -10,7 +14,7 @@ my-cool-spellchecker dictionary.txt file-to-check.txt
 # output here
 ```
 
-## The Features
+### The Features
 
 Your program should support the following features (time permitting):
 
