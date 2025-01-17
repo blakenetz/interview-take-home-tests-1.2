@@ -4,7 +4,9 @@
   "description": "Monorepo of take-home tests for Droplet",
   "author": "Blake Netzeband <blake.netzeband@gmail.com> (https://blakenetzeband.com/)",
   "scripts": {
-    "start": "pnpm run --parallel --if-present start"
+    "start:spell-check": "pnpm run -F spell-check start",
+    "start:intersection": "pnpm run -F intersection start",
+    "build": "pnpm run --parallel --if-present build"
   },
   "devDependencies": {
     "@types/node": "^22.10.7"
