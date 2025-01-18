@@ -5,6 +5,17 @@ Monorepo for Droplet's take-home code assessment. Solutions available at
 - [Intersection](./packages/intersection/README.md)
 - [Spell Checker](./packages/spell-check/README.md)
 
+## Setup
+
+This is a `pnpm` monorepo and therefore requires `pnpm` to be installed.
+
+```bash
+pnpm install
+pnpm build
+pnpm start:spell-check
+pnpm start:intersection
+```
+
 ## Prompt
 
 > We want to see code you write. Coding live in front of strangers is stressful, and doesn't mimic how you write code at work.

@@ -10,6 +10,31 @@ The alternative would be to use an `Array.includes` (or any other Array method),
 
 🌈 the more you know
 
+## Scripts
+
+There is only a single script:
+
+- `start`
+
+```shell
+pnpm run -F spell-check start
+# OR
+npm run start:spell-check
+```
+
+Arguments:
+
+- `path to dictionary txt file` [string] optional - if omitted, it uses the default dictionary
+- `word` [string] required
+
+Example:
+
+```shell
+npm run start:spell-check -- ./packages/test/dictionary.txt hello
+# or
+npm run start:spell-check -- hello
+```
+
 ## Prompt
 
 > Write a program that checks spelling. The input to the program is a dictionary file containing a list of valid words and a file containing the text to be checked.
