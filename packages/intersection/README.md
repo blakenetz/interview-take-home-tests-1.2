@@ -5,7 +5,7 @@ On each tick, we evaluate if we need to update any state
 The flow of the intersection is determined by 2 states:
 
 1. Flow Direction (north-south or east-west)
-2. Phase ('green', 'warning', etc.)
+2. Phase (green, warning, etc.)
 
 Each phase is allocated a certain number of ticks. Once there allocation is used up, then move to the next phases.
 Once each phase has been cycled through, move to the next `flowDirection`
