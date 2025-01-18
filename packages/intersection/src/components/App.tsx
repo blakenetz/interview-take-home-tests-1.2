@@ -1,43 +1,59 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import Row from "@/components/Row";
 import useDisplaySize from "@/hooks/useDisplaySize";
 import { directions, flowDirections, Phase, phases } from "@/types";
 import { Box, Center } from "@mantine/core";
 import { useCounter, useToggle } from "@mantine/hooks";
+import { sum } from "@/utils";
 
-const phaseLength = phases.length;
-const max = phaseLength * 4; // work in quarters
+// how many "ticks" allocated to each phase
+const allocations: Record<Phase, number> = {
+  "turn-only": 4,
+  proceed: 10,
+  warning: 3,
+  stop: 1,
+};
+
+const phaseBreaksArr = Object.values(allocations).reduce<number[]>(
+  (acc, val, i, array) => [...acc, sum(array.slice(0, i)) + val],
+  []
+);
+const phaseBreaks = new Set<number>(phaseBreaksArr);
+const [max] = phaseBreaksArr.slice(-1);
+
+console.log({ max, phaseBreaksArr });
 
 export default function App() {
   const size = useDisplaySize();
 
-  const [count, countHandlers] = useCounter(0, { max });
+  const [tick, handler] = useCounter(0);
   const [flowDirection, toggleFlowDirection] = useToggle(flowDirections);
+  const [phase, togglePhase] = useToggle(phases);
 
-  useEffect(() => {
-    console.log("initializing interval");
-    const interval = setInterval(
-      () => countHandlers.increment(),
-      // every second we reevaluate the stop light state
-      1000
-    );
-
-    return () => clearInterval(interval);
-    // only initialize this interval once
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // reset counter when it hits its max
-  if (count === max) {
-    countHandlers.reset();
+  function reset() {
     toggleFlowDirection();
+    handler.reset();
   }
 
-  let phase: Phase = "stop";
-  if (count < phaseLength) phase = "turn-only"; // first length for turning
-  else if (count < phaseLength * 3) phase = "proceed"; // 3/4 for all traffic
-  else if (count < phaseLength * 3 + phaseLength * 0.75) phase = "warning"; // warn at very end
-  // last .25 of a phase length is universal stop
+  // This effect hook has **one** job: tick every 1s
+  useEffect(() => {
+    console.log("initializing interval");
+    const interval = setInterval(() => handler.increment(), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // This effect handles changes on a per tick bases
+  useEffect(() => {
+    if (phaseBreaks.has(tick)) {
+      console.log("updating phase", phase, tick);
+      togglePhase();
+    }
+    if (tick > max) {
+      console.log("reseting", phase, tick);
+      reset();
+    }
+  }, [tick]);
 
   return (
     <Center>

@@ -37,7 +37,9 @@ export default function DrivePath({ index }: DrivePathProps) {
       <IconArrowRightDashed
         color="var(--mantine-color-cyan-3)"
         size="xs"
-        {...(left && { style: { transform: `rotate(-90deg)` } })}
+        {...(left && {
+          style: { transform: `rotate(-90deg)` },
+        })}
         {...(right && { style: { transform: `rotate(90deg)` } })}
       />
     </Flex>

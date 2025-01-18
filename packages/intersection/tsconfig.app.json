@@ -25,7 +25,8 @@
       "@/components/*": ["./src/components/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/hooks/*": ["./src/hooks/*"],
-      "@/types": ["./src/types.ts"]
+      "@/types": ["./src/types.ts"],
+      "@/utils": ["./src/utils/index.ts"]
     }
   },
   "include": ["src"]
