@@ -15,10 +15,12 @@ const allocations: Record<Phase, number> = {
   stop: 1,
 };
 
+// create an array of all the ticks that indicate a phase updates
 const phaseBreaksArr = Object.values(allocations).reduce<number[]>(
   (acc, val, i, array) => [...acc, sum(array.slice(0, i)) + val],
   []
 );
+// create a set for better lookups
 const phaseBreaks = new Set<number>(phaseBreaksArr);
 const [max] = phaseBreaksArr.slice(-1);
 
@@ -29,7 +31,7 @@ export default function App() {
   const [flowDirection, toggleFlowDirection] = useToggle(flowDirections);
   const [phase, togglePhase] = useToggle(phases);
 
-  // This effect hook has **one** job: tick every 1s
+  // This effect hook has ONLY one job: tick every 1s
   useEffect(() => {
     const interval = setInterval(() => handler.increment(), 1000);
     return () => clearInterval(interval);
@@ -38,7 +40,6 @@ export default function App() {
   // This effect handles changes on a per tick bases
   useEffect(() => {
     if (phaseBreaks.has(tick)) togglePhase();
-    // failsafe
     if (tick > max) {
       toggleFlowDirection();
       handler.reset();
@@ -46,15 +47,26 @@ export default function App() {
   }, [tick]);
 
   const _handleWalkRequest = () => {
-    // IF "flowDirection" is against the walk request
-    // AND "phase" is still in `turn-only` of `proceed`
-    // THEN reduce the tick allocation of "proceed"
-    // NOTE: this would require moving "phaseBreaks" to internal state
+    /**
+     * IF "flowDirection" is against the walk request
+     * AND "phase" is still in `turn-only` of `proceed`
+     * THEN reduce the tick allocation of "proceed"
+     *
+     * NOTE:
+     * this would require moving "phaseBreaks" to internal state
+     */
+
     return;
   };
 
   const _handleCarBuildUp = () => {
-    // same logic as "handleWalkRequest"
+    /**
+     * same logic as "handleWalkRequest"
+     *
+     * NOTE:
+     * this would require moving all the "tick" logic to context
+     * AND have logic in the "Row" component that measures cars on a per tick basis
+     */
     return;
   };
 
