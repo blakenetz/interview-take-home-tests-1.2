@@ -14,7 +14,7 @@ export default function Light({ arrow, color, ...props }: LightProps) {
       <ColorSwatch
         color={`var(--mantine-color-${color}-5)`}
         classNames={{
-          colorOverlay: color === "orange" ? styles["pulse-orange"] : "",
+          colorOverlay: color === "orange" ? styles.pulse : "",
         }}
       >
         {arrow && <IconArrowLeft />}

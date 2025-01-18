@@ -1,26 +1,13 @@
-.pulse-orange {
-  animation: pulse-orange 0.5s infinite;
-}
-.pulse-cyan {
-  animation: pulse-cyan 0.5s infinite;
+.pulse {
+  animation: pulse 0.5s infinite;
 }
 
-@keyframes pulse-orange {
+@keyframes pulse {
   0%,
   100% {
     background-color: var(--mantine-color-orange-5);
   }
   50% {
     background-color: var(--mantine-color-orange-4);
-  }
-}
-
-@keyframes pulse-cyan {
-  0%,
-  100% {
-    background-color: var(--mantine-color-cyan-5);
-  }
-  50% {
-    background-color: var(--mantine-color-cyan-4);
   }
 }
