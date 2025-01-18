@@ -1,7 +1,7 @@
 import { Box, BoxProps, ColorSwatch } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { LightColor } from "../../types";
-import styles from "./light.module.css";
+import { LightColor } from "@/types";
+import styles from "@/styles/pulse.module.css";
 
 export interface LightProps extends BoxProps {
   arrow?: boolean;
@@ -13,7 +13,9 @@ export default function Light({ arrow, color, ...props }: LightProps) {
     <Box {...props}>
       <ColorSwatch
         color={`var(--mantine-color-${color}-5)`}
-        classNames={{ colorOverlay: color === "orange" ? styles.pulse : "" }}
+        classNames={{
+          colorOverlay: color === "orange" ? styles["pulse-orange"] : "",
+        }}
       >
         {arrow && <IconArrowLeft />}
       </ColorSwatch>

@@ -1,7 +1,8 @@
+import DrivePath from "@/components/DrivePath";
+import Light from "@/components/Light";
+import useDisplaySize from "@/hooks/useDisplaySize";
+import { Direction, FlowDirection, LightColor, Phase } from "@/types";
 import { Center, Flex, MantineStyleProp } from "@mantine/core";
-import useDisplaySize from "../hooks/useDisplaySize";
-import Light from "./light/Light";
-import { Direction, FlowDirection, LightColor, Phase } from "../types";
 
 export interface RowProps {
   direction: Direction;
@@ -54,10 +55,11 @@ export default function Row({ direction, phase, flowDirection }: RowProps) {
       {rowArray.map((cell) => {
         return (
           <Center
-            bg={cell < 3 ? "gray.2" : "gray.5"}
+            key={cell}
+            bg={cell < 3 ? "gray.2" : "gray.5"} // darker gray is for driving
             h={size}
             w={size}
-            key={cell}
+            pos="relative"
           >
             {/* turn signal */}
             {cell === 3 && (
@@ -71,6 +73,7 @@ export default function Row({ direction, phase, flowDirection }: RowProps) {
             {cell === 5 && (
               <Light color={isRed ? "red" : mainColor} style={lightStyle} />
             )}
+            {!isRed && <DrivePath index={cell} />}
           </Center>
         );
       })}

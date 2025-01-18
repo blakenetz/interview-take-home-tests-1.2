@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import Row from "@/components/Row";
+import useDisplaySize from "@/hooks/useDisplaySize";
+import { directions, flowDirections, Phase, phases } from "@/types";
 import { Box, Center } from "@mantine/core";
-import useDisplaySize from "../hooks/useDisplaySize";
-import Row from "./Row";
-import { directions, flowDirections, Phase, phases } from "../types";
-import { useToggle, useCounter } from "@mantine/hooks";
+import { useCounter, useToggle } from "@mantine/hooks";
 
 const phaseLength = phases.length;
 const max = phaseLength * 4; // work in quarters
@@ -15,17 +15,23 @@ export default function App() {
   const [flowDirection, toggleFlowDirection] = useToggle(flowDirections);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (count === max) {
-        countHandlers.reset();
-        toggleFlowDirection();
-      } else countHandlers.increment();
-
+    console.log("initializing interval");
+    const interval = setInterval(
+      () => countHandlers.increment(),
       // every second we reevaluate the stop light state
-    }, 1000);
+      1000
+    );
 
     return () => clearInterval(interval);
-  }, [count, countHandlers, toggleFlowDirection]);
+    // only initialize this interval once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // reset counter when it hits its max
+  if (count === max) {
+    countHandlers.reset();
+    toggleFlowDirection();
+  }
 
   let phase: Phase = "stop";
   if (count < phaseLength) phase = "turn-only"; // first length for turning
