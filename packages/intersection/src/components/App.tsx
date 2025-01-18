@@ -22,8 +22,6 @@ const phaseBreaksArr = Object.values(allocations).reduce<number[]>(
 const phaseBreaks = new Set<number>(phaseBreaksArr);
 const [max] = phaseBreaksArr.slice(-1);
 
-console.log({ max, phaseBreaksArr });
-
 export default function App() {
   const size = useDisplaySize();
 
@@ -31,29 +29,34 @@ export default function App() {
   const [flowDirection, toggleFlowDirection] = useToggle(flowDirections);
   const [phase, togglePhase] = useToggle(phases);
 
-  function reset() {
-    toggleFlowDirection();
-    handler.reset();
-  }
-
   // This effect hook has **one** job: tick every 1s
   useEffect(() => {
-    console.log("initializing interval");
     const interval = setInterval(() => handler.increment(), 1000);
     return () => clearInterval(interval);
   }, []);
 
   // This effect handles changes on a per tick bases
   useEffect(() => {
-    if (phaseBreaks.has(tick)) {
-      console.log("updating phase", phase, tick);
-      togglePhase();
-    }
+    if (phaseBreaks.has(tick)) togglePhase();
+    // failsafe
     if (tick > max) {
-      console.log("reseting", phase, tick);
-      reset();
+      toggleFlowDirection();
+      handler.reset();
     }
   }, [tick]);
+
+  const _handleWalkRequest = () => {
+    // IF "flowDirection" is against the walk request
+    // AND "phase" is still in `turn-only` of `proceed`
+    // THEN reduce the tick allocation of "proceed"
+    // NOTE: this would require moving "phaseBreaks" to internal state
+    return;
+  };
+
+  const _handleCarBuildUp = () => {
+    // same logic as "handleWalkRequest"
+    return;
+  };
 
   return (
     <Center>
