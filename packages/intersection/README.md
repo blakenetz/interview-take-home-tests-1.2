@@ -2,15 +2,15 @@
 
 ## Implementation
 
-My approach is to have a ticker that updates every 1 second
-On each tick, we evaluate if we need to update any state
+My approach is to have a ticker that updates every 1 second.
+On each tick, we evaluate if we need to make any updates to the app's states.
 The flow of the intersection is determined by 2 states:
 
-1. Flow Direction (north-south or east-west)
-2. Phase (green, warning, etc.)
+1. `flowDirection` (north-south or east-west)
+2. `phase` (green, warning, etc.)
 
-Each phase is allocated a certain number of ticks. Once there allocation is used up, then move to the next phases.
-Once each phase has been cycled through, move to the next `flowDirection`
+Each phase is allocated a certain number of ticks. Once thier allocation is used up, the app progresses to the next phase.
+Once each phase has been cycled through, move to the next flowDirection
 
 ## Setup
 
