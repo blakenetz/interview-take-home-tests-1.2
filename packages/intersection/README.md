@@ -10,6 +10,8 @@ The flow of the intersection is determined by 2 states:
 Each phase is allocated a certain number of ticks. Once there allocation is used up, then move to the next phases.
 Once each phase has been cycled through, move to the next `flowDirection`
 
+This is a Vite, React, TS, and Mantine app. It was bootstrapped with a starter package, so excuse all the config stuff. For the sake of simplicity, all styles are inlined (for the most part)
+
 ## Prompt
 
 > ### Make a Traffic Intersection
