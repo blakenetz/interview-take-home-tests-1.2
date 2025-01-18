@@ -5,7 +5,6 @@ import styles from "@/styles/pulse.module.css";
 
 interface DrivePathProps {
   index: number;
-  phase: Phase;
 }
 
 export default function DrivePath({ index }: DrivePathProps) {
