@@ -18,7 +18,7 @@ This is a Vite, React, TS, and Mantine app. It was bootstrapped with a starter p
 
 ## Scripts
 
-There are 4 scripts (all of which were defined in Vite starter template):
+There are 4 scripts (all of which were defined in the Vite starter template):
 
 - `start`
 - `dev`
