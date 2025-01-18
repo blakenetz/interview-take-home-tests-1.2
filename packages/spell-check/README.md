@@ -19,7 +19,7 @@ There is only a single script:
 ```shell
 pnpm run -F spell-check start
 # OR
-npm run start:spell-check
+pnpm start:spell-check
 ```
 
 Arguments:
@@ -30,9 +30,9 @@ Arguments:
 Example:
 
 ```shell
-npm run start:spell-check -- ./packages/test/dictionary.txt hello
+pnpm start:spell-check -- ./packages/test/dictionary.txt hello
 # or
-npm run start:spell-check -- hello
+pnpm start:spell-check -- hello
 ```
 
 ## Prompt

@@ -28,7 +28,7 @@ There are 4 scripts (all of which were defined in the Vite starter template):
 Example:
 
 ```shell
-npm run dev
+pnpm dev
 ```
 
 ## Prompt
